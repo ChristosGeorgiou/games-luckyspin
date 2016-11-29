@@ -1,0 +1,268 @@
+$card-bg-default:#EEE;
+$card-font-default:#333;
+$card-bg-red:#f44336;
+$card-font-red:#FFF;
+$card-bg-blue:#2196F3;
+$card-font-blue:#FFF;
+$card-bg-yellow:#FFC107;
+$card-font-yellow:#111;
+$card-bg-black:#37474F;
+$card-font-black:#EEE;
+$sidebar-size:150px;
+@mixin Card($color-bg, $color-font) {
+    background-color: $color-bg;
+    border-color: darken($color-bg, 10%);
+    text-shadow: 3px 3px 0 darken($color-bg, 10%);
+    color: $color-font;
+    .fa {
+        color: darken($color-bg, 10%);
+        text-shadow: none;
+    }
+    &:hover {
+        border-color: darken($color-bg, 20%);
+        background-color: darken($color-bg, 15%);
+        text-shadow: 3px 3px 0 darken($color-bg, 20%);
+        .fa {
+            color: darken($color-bg, 20%);
+        }
+    }
+}
+
+.game-sidebar {
+    height: 100%;
+    background: #111;
+    position: fixed;
+    color: #FFF;
+    width: $sidebar-size;
+    top: 0;
+    hr {
+        border: solid 1px #333;
+        border-width: 1px 0 0;
+        margin: 5px 0;
+    }
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+        padding: 20px 0;
+    }
+    .box {
+        margin: 8px;
+        .header {
+            font-size: 1.3em;
+            margin: 0 0 5px;
+        }
+        .info {
+            color: #AAA;
+            padding-bottom: 5px;
+        }
+        .timer {
+            .seconds {
+                font-size: 5em;
+                font-family: monospace;
+                text-align: center;
+            }
+            .controls {
+                margin: 0 -2px;
+                button {
+                    float: left;
+                    width: 30%;
+                    padding: 0;
+                    line-height: 1em;
+                    height: 30px;
+                    margin: 2px;
+                }
+            }
+        }
+        .rounds {
+            .round {
+                padding: 7px 10px 5px;
+                margin: 0 0 2px;
+                font-weight: 300;
+                font-size: 1em;
+                line-height: 1em;
+                border-radius: 0 12px 12px 10px;
+                border-bottom: solid 2px;
+                &.active {
+                    font-weight: 600;
+                    border-bottom-color: #FFF !important;
+                }
+                .number {
+                    font-size: .8em;
+                }
+                .timer {
+                    float: right;
+                }
+                &.red {
+                    background: $card-bg-red;
+                    border-bottom-color: darken($card-bg-red, 10%);
+                }
+                &.blue {
+                    background: $card-bg-blue;
+                    border-bottom-color: darken($card-bg-blue, 10%);
+                }
+            }
+            .next-round {
+                background: #4CAF50;
+                padding: 0;
+                line-height: 1em;
+                height: 40px;
+                width: 100%;
+                margin-top: 5px;
+            }
+        }
+    }
+    a.button,
+    button {
+        color: #FFF;
+    }
+}
+
+.game-container {
+    background: #FAFAFA;
+    margin-left: $sidebar-size;
+    padding: 10px;
+}
+
+.cg-table {
+    width: 100%;
+    td {
+        padding: 0;
+        font-family: monospace;
+        font-size: 5em;
+        line-height: 1em;
+        border: solid 1px #AAA;
+        text-align: center;
+        height: 61px;
+        width: ( 100% /18);
+        &.empty {
+            background: #CCC;
+        }
+    }
+}
+
+.characters {
+    button {
+        font-size: 3em;
+        padding: 20px;
+        line-height: 1em;
+        height: auto;
+        margin: 0.5%;
+        width: 11.5%;
+        border-radius: 50px;
+        &:disabled {
+            background: #CCC;
+            color: #999;
+        }
+    }
+}
+
+.card-container {
+    perspective: 800px;
+    position: relative;
+    float: left;
+    margin: 0.5%;
+    width: 19%;
+    height: 141px;
+    .card {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        transform-style: preserve-3d;
+        transition: transform 1s;
+        transform-origin: center;
+        user-select: none;
+        .front,
+        .back {
+            margin: -3px;
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border: 3px solid #CCC;
+            border-radius: 10px;
+            // line-height: 150px;
+            text-align: center;
+            overflow: hidden;
+            white-space: nowrap;
+            user-select: none;
+            &:before {
+                content: "";
+                display: inline-block;
+                height: 100%;
+                vertical-align: middle;
+            }
+            .word {
+                display: inline-block;
+                vertical-align: middle;
+                font-size: 1.5em;
+                font-weight: 600;
+                line-height: normal;
+                -webkit-touch-callout: none;
+                /* iOS Safari */
+                -webkit-user-select: none;
+                /* Chrome/Safari/Opera */
+                -khtml-user-select: none;
+                /* Konqueror */
+                -moz-user-select: none;
+                /* Firefox */
+                -ms-user-select: none;
+                /* Internet Explorer/Edge */
+                user-select: none;
+            }
+            .fa {
+                position: absolute;
+                bottom: -30px;
+                left: -35px;
+                font-size: 8em;
+                z-index: -1;
+                transform: rotate(20deg);
+            }
+        }
+        .front {
+            z-index: 2;
+            /* for firefox 31 */
+            transform: rotateY(0deg);
+            @include Card($card-bg-default, $card-font-default);
+        }
+        .back {
+            transform: rotateX(180deg);
+            .expl {
+                position: absolute;
+                font-size: 0.8em;
+                bottom: 5px;
+                right: 5px;
+            }
+        }
+        &.card-red {
+            .back {
+                @include Card($card-bg-red, $card-font-red);
+            }
+        }
+        &.card-blue {
+            .back {
+                @include Card($card-bg-blue, $card-font-blue);
+            }
+        }
+        &.card-black {
+            .back {
+                @include Card($card-bg-black, $card-font-black);
+            }
+        }
+        &.card-yellow {
+            .back {
+                @include Card($card-bg-yellow, $card-font-yellow);
+            }
+        }
+    }
+    &.flip {
+        .card {
+            transform: rotateX( -180deg);
+        }
+    }
+    &:hover {
+        cursor: pointer;
+    }
+}

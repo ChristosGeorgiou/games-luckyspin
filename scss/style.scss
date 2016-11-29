@@ -1,0 +1,90 @@
+@import "portrait";
+@import "centerbox";
+@import "game";
+body {
+    background: #FAFAFA;
+    font-family: "Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.wrapper {}
+
+.toolbar {
+    background: #FAFAFA;
+    padding: 5px 10px;
+    border-bottom: solid 1px #EEE;
+    a.button,
+    button {
+        margin: 0;
+    }
+}
+
+.page {
+    background: #111;
+    .page-header {
+        color: #FFF;
+        position: relative;
+        .icon {
+            position: absolute;
+            left: 0;
+            bottom: -50px;
+            color: #222;
+            font-size: 16em;
+            transform: rotate(15deg);
+        }
+        .page-box {
+            padding: 100px 0 20px;
+        }
+    }
+    .page-body{
+        padding-top:20px;
+        background: #FAFAFA;
+        position: relative;
+    }
+    .page-box {
+        width: 100%;
+        margin: 0 auto;
+        @media (min-width: 400px) {
+            width: 400px;
+        }
+    }
+}
+
+.button.button-primary, button.button-primary, input[type="submit"].button-primary, input[type="reset"].button-primary, input[type="button"].button-primary {
+    color: #FFF;
+    background-color: #111;
+    border-color: #000;
+}
+
+.button.button-primary:hover, button.button-primary:hover, input[type="submit"].button-primary:hover, input[type="reset"].button-primary:hover, input[type="button"].button-primary:hover, .button.button-primary:focus, button.button-primary:focus, input[type="submit"].button-primary:focus, input[type="reset"].button-primary:focus, input[type="button"].button-primary:focus {
+    color: #FFF;
+    background-color: #222;
+    border-color: #000;
+}
+
+.footer {
+    margin-top: 15px;
+    text-align: center;
+    color: #999;
+    font-size: 0.8em;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    small {
+        color: #999;
+        font-size: .6em;
+    }
+}
+
+a{
+    color:#222;
+    &:hover{
+        color:#999;
+    }
+}
+
+.serial {
+    font-family: monospace;
+}

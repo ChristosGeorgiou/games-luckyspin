@@ -1,0 +1,34 @@
+<div class="game-sidebar">
+	<div class="box">
+		<h1 class="header">LuckySpin <small>v0.1</small></h1>
+		<hr>
+		<a ui-sref="app.main" class="button u-full-width">
+			<span class="fa fa-angle-double-left fa-fw"></span> MENU
+		</a>
+		<button class="u-full-width" ng-click="vm.Refresh()">Refresh</button>
+	</div>
+
+	<div class="footer">
+		LuckySpin v0.1<br><a href="http://christosgeorgiou.gr">CG</a> -
+		<a href="https://github.com/ChristosGeorgiou/luckyspin">Source Code</a>
+	</div>
+</div>
+<div class="game-container">
+
+	<table class="cg-table">
+		<tr ng-repeat="line in vm.phrase.lines track by $index">
+			<td ng-class="{empty:!letter}" ng-repeat="letter in line track by $index">
+				<span ng-if="letter && letter.visible">{{letter.char}}</span>
+			</td>
+		</tr>
+	</table>
+
+	<hr>
+	<div class="characters">
+		<button ng-repeat="char in vm.alphabet" ng-click="vm.GetLetter(char)" ng-disabled="vm.disabled[$index]">
+		{{char}}</button>
+	</div>
+
+	<div class="u-cf"></div>
+
+</div>

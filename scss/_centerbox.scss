@@ -1,0 +1,12 @@
+.centerbox {
+    width: 100%;
+    @media (min-width: 600px) {
+    margin: 100px auto 0;
+        width: 600px;
+    }
+    &.centerbox-sm {
+        @media (min-width: 400px) {
+            width: 400px;
+        }
+    }
+}
